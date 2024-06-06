@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"task-manager/controllers"
 	"log"
 	"net/http"
+	"task-manager/product"
 
 	"github.com/gorilla/mux"
 )
@@ -22,9 +22,9 @@ func main() {
 
 func RegisterProductRoutes(router *mux.Router) {
 	var muxBase = "/api/products"
-	router.HandleFunc(muxBase, controllers.GetProducts).Methods("GET")
-	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), controllers.GetProductById).Methods("GET")
-	router.HandleFunc(muxBase, controllers.CreateProduct).Methods("POST")
-	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), controllers.UpdateProduct).Methods("PUT")
-	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), controllers.DeleteProduct).Methods("DELETE")
+	router.HandleFunc(muxBase, product.GetProducts).Methods("GET")
+	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), product.GetProductById).Methods("GET")
+	router.HandleFunc(muxBase, product.CreateProduct).Methods("POST") // Corrected this line
+	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), product.UpdateProduct).Methods("PUT")
+	router.HandleFunc(fmt.Sprintf("%s/{id}", muxBase), product.DeleteProduct).Methods("DELETE")
 }

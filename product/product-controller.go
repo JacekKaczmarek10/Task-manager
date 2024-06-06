@@ -1,21 +1,19 @@
-package controllers
+package product
 
 import (
 	"encoding/json"
-	"task-manager/entities"
-	"task-manager/repos"
 	"net/http"
 	"strconv"
 
 	"github.com/gorilla/mux"
 )
 
-var productRepo = repos.NewProductRepo()
+var productRepo = NewProductRepo()
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	var product entities.Product
+	var product Product
 	json.NewDecoder(r.Body).Decode(&product)
 	product = productRepo.Create(product)
 	json.NewEncoder(w).Encode(product)
@@ -53,7 +51,7 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("Do not understand {id}")
 		return
 	}
-	var product entities.Product
+	var product Product
 	json.NewDecoder(r.Body).Decode(&product)
 	_, err = productRepo.Update(uint(productIdLong), product)
 	if err != nil {

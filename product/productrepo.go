@@ -1,39 +1,38 @@
-package repos
+package product
 
 import (
 	"fmt"
-	"task-manager/entities"
 )
 
 type ProductRepo struct {
-	products []entities.Product
+	products []Product
 }
 
 func NewProductRepo() *ProductRepo {
-	return &ProductRepo{make([]entities.Product, 0)}
+	return &ProductRepo{make([]Product, 0)}
 }
 
-func (p *ProductRepo) Create(partial entities.Product) entities.Product {
+func (p *ProductRepo) Create(partial Product) Product {
 	newItem := partial
 	newItem.ID = uint(len(p.products)) + 1
 	p.products = append(p.products, newItem)
 	return newItem
 }
 
-func (p *ProductRepo) GetList() []entities.Product {
+func (p *ProductRepo) GetList() []Product {
 	return p.products
 }
 
-func (p *ProductRepo) GetOne(id uint) (entities.Product, error) {
+func (p *ProductRepo) GetOne(id uint) (Product, error) {
 	for _, it := range p.products {
 		if it.ID == id {
 			return it, nil
 		}
 	}
-	return entities.Product{}, fmt.Errorf("key '%d' not found", id)
+	return Product{}, fmt.Errorf("key '%d' not found", id)
 }
 
-func (p *ProductRepo) Update(id uint, amended entities.Product) (entities.Product, error) {
+func (p *ProductRepo) Update(id uint, amended Product) (Product, error) {
 	for i, it := range p.products {
 		if it.ID == id {
 			amended.ID = id
@@ -42,7 +41,7 @@ func (p *ProductRepo) Update(id uint, amended entities.Product) (entities.Produc
 			return amended, nil
 		}
 	}
-	return entities.Product{}, fmt.Errorf("key '%d' not found", amended.ID)
+	return Product{}, fmt.Errorf("key '%d' not found", amended.ID)
 }
 
 func (p *ProductRepo) DeleteOne(id uint) (bool, error) {
