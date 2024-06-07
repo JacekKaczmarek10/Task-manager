@@ -2,10 +2,9 @@ package product
 
 import (
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 var productRepo = NewProductRepo()
