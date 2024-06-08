@@ -18,7 +18,7 @@ $ go run .
 ```
 
 
-## [Run test](test/)
+## Run test
 
 ```
 $ cd Task-manager
