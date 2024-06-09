@@ -25,3 +25,7 @@ $ cd Task-manager
 $ ./test.sh
 ```
 
+## Code coverage
+
+![image](https://github.com/JacekKaczmarek10/task-manager/assets/58121352/5fbdac61-18bf-4a97-bda2-0934bdcc09eb)
+
